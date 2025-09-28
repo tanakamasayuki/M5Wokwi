@@ -14,6 +14,15 @@ M5Wokwi は、Wokwi シミュレータ上で M5Unified API の軽量なサブセ
 - 既存スケッチの変更を最小限に抑えるため、ビルド時に足りない記号を補うためのシムを用意します。
 - 対応ディスプレイ部品へライブラリを接続した最小限の Wokwi プロジェクトテンプレートを提供します。
 
+### 現在のステータス (v0.0.1)
+- Arduino ライブラリ標準構成（`src/`, `examples/`, `library.properties`）を用意。
+- `examples/Button/Button.ino` で [M5Unified/Button](https://github.com/m5stack/M5Unified/blob/master/examples/Basic/Button/Button.ino) をベースにしたビルド確認用スケッチを収録。
+- `M5.Display` は M5GFX の ILI9341 ラッパーで初期化され、Wokwi の 320×240 TFT を描画できます（入力連携は未実装）。
+- ボタン API は現時点で固定値を返すスタブであり、今後 Wokwi の入力イベントと連携させる予定です。
+
+### 依存ライブラリ
+- [M5GFX](https://github.com/m5stack/M5GFX): ディスプレイ描画バックエンドとして利用します。
+
 ## ストレッチ目標
 - Wokwi が対応する範囲で IMU、スピーカー、電源管理などの周辺機能を再現します。
 - 設定フラグによる複数ボードプロファイル（Core、Core2、CoreS3 など）の切り替えに対応します。
@@ -33,6 +42,9 @@ M5Wokwi は、Wokwi シミュレータ上で M5Unified API の軽量なサブセ
    ```
 3. M5UnifiedW と互換性のあるディスプレイおよびボタンを定義した Wokwi の diagram JSON をスケッチに含めます。
 4. Wokwi 上でビルドし、シミュレーションを実行します。
+
+### 動作確認用スケッチ
+- `examples/Button/Button.ino` を開き、M5Stack Core 系ボード設定でビルドしてください（現時点では表示・ボタンはスタブ動作です）。
 
 > 初期プロトタイプが完成次第、導入手順と Wokwi 設定の詳細を追記します。
 
