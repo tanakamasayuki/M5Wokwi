@@ -14,7 +14,7 @@
 #include <thread>
 #endif
 
-#include <M5GFX.h>
+#include <LovyanGFX.hpp>
 
 // Provide common TFT color definitions if they are missing.
 #ifndef TFT_BLACK
