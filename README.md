@@ -1,6 +1,6 @@
-# M5UnifiedW
+# M5Wokwi
 
-M5UnifiedW は、Wokwi シミュレータ上で M5Unified API の軽量なサブセットを再現する Arduino ライブラリです。既存のスケッチで `#include "M5Unified.h"` を `#include "M5UnifiedW.h"` に差し替えるだけで、実機がなくても馴染みのあるディスプレイ描画やボタン操作を試せる環境を提供します。
+M5Wokwi は、Wokwi シミュレータ上で M5Unified API の軽量なサブセットを再現する Arduino ライブラリです。ライブラリ名は M5Wokwi ですが、既存スケッチとの互換性を優先し `#include "M5Unified.h"` を `#include "M5UnifiedW.h"` に差し替えるだけで、実機がなくても馴染みのあるディスプレイ描画やボタン操作を試せる環境を提供します。
 
 ## このプロジェクトを選ぶ理由
 - **UI 調整の高速化:** 実機への書き込み前にデスクトップ上で配色やレイアウト、アニメーションを素早く検証できます。
