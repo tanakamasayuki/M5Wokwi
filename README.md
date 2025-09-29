@@ -20,6 +20,8 @@ M5Wokwi は、Wokwi シミュレータ上で M5Unified API の軽量なサブセ
 - `M5.Display` は LovyanGFX の ILI9341 ラッパーで初期化され、Wokwi の 320×240 TFT を描画できます（入力連携は未実装）。
 - ボタン API は現時点で固定値を返すスタブであり、今後 Wokwi の入力イベントと連携させる予定です。
 
+> 補足: M5Unified 本体は内部で M5GFX を利用していますが、M5GFX は LovyanGFX を M5Stack 社デバイス向けに最適化したラッパーです。Wokwi では M5Stack 純正では採用されていない ILI9341 パネルを使用するため、本ライブラリでは LovyanGFX を直接呼び出して描画を行います。
+
 ### 依存ライブラリ
 - [LovyanGFX](https://github.com/lovyan03/LovyanGFX): ディスプレイ描画バックエンドとして利用します。
 
@@ -67,4 +69,4 @@ M5Wokwi は、Wokwi シミュレータ上で M5Unified API の軽量なサブセ
 - `M5.Speaker` などのオプション機能を、リンカ負荷を抑えつつ発見しやすい形で構成する方法。
 
 ## ライセンス
-このプロジェクトは [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) ライセンスのもとでパブリックドメインに供されます。
+このプロジェクトは [MIT License](LICENSE) のもとで公開されています。

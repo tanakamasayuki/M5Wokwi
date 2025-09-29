@@ -3,17 +3,7 @@
 // M5Wokwi - minimal Arduino-compatible shim for emulating M5Unified APIs on Wokwi.
 // Documentation: https://github.com/tanakamasayuki/M5Wokwi
 
-#include <stdint.h>
-#include <stdarg.h>
-#include <stdio.h>
-
-#ifdef ARDUINO
 #include <Arduino.h>
-#else
-#include <chrono>
-#include <thread>
-#endif
-
 #include <LovyanGFX.hpp>
 
 // Provide common TFT color definitions if they are missing.
@@ -97,7 +87,7 @@ namespace m5wokwi
     {
     public:
         Display()
-            : _epdMode(epd_mode_t::epd_fastest), _initialized(false)
+            : _initialized(false)
         {
         }
 
@@ -112,10 +102,6 @@ namespace m5wokwi
             fillScreen(TFT_BLACK);
             _initialized = true;
         }
-
-        void setEpdMode(epd_mode_t mode) { _epdMode = mode; }
-
-        epd_mode_t getEpdMode() const { return _epdMode; }
 
         uint8_t getRotation() const
         {
@@ -149,26 +135,7 @@ namespace m5wokwi
         bool wasDecideClickCount() { return false; }
         uint8_t getClickCount() const { return 0; }
     };
-
-    inline void log_i(const char *fmt, ...)
-    {
-        va_list args;
-        va_start(args, fmt);
-#ifdef ARDUINO
-        char buffer[160];
-        vsnprintf(buffer, sizeof(buffer), fmt, args);
-        Serial.println(buffer);
-#else
-        vfprintf(stdout, fmt, args);
-        fputc('\n', stdout);
-#endif
-        va_end(args);
-    }
 } // namespace m5wokwi
-
-#ifndef M5_LOGI
-#define M5_LOGI(fmt, ...) ::m5wokwi::log_i(fmt, ##__VA_ARGS__)
-#endif
 
 class M5WokwiClass
 {
@@ -182,13 +149,11 @@ public:
 
     void begin()
     {
-#ifdef ARDUINO
         if (!Serial)
         {
             Serial.begin(115200);
             delay(10);
         }
-#endif
         Display.begin();
     }
 
@@ -199,11 +164,7 @@ public:
 
     void delay(uint32_t ms)
     {
-#ifdef ARDUINO
         ::delay(ms);
-#else
-        std::this_thread::sleep_for(std::chrono::milliseconds(ms));
-#endif
     }
 };
 
@@ -211,7 +172,7 @@ extern M5WokwiClass M5;
 
 namespace m5wokwi
 {
-    using ::epd_mode_t;
+    // using ::epd_mode_t;
     using ::M5;
     using ::M5WokwiClass;
 }

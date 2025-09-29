@@ -8,7 +8,7 @@ void setup()
 {
     M5.begin();
 
-    M5.Display.setEpdMode(m5wokwi::epd_mode_t::epd_fastest);
+    // M5.Display.setEpdMode(m5wokwi::epd_mode_t::epd_fastest);
 
     if (M5.Display.width() < M5.Display.height())
     {
@@ -25,8 +25,7 @@ void loop()
     static constexpr uint16_t colors[] = {
         TFT_WHITE, TFT_CYAN, TFT_RED, TFT_YELLOW, TFT_BLUE, TFT_GREEN};
 
-    static constexpr const char *names[] = {
-        "none", "wasHold", "wasClicked", "wasPressed", "wasReleased", "wasDecideCount"};
+    // static constexpr const char *names[] = {"none", "wasHold", "wasClicked", "wasPressed", "wasReleased", "wasDecideCount"};
 
     const int w = M5.Display.width() / 5;
     const int h = M5.Display.height();
@@ -41,7 +40,7 @@ void loop()
                                                            : 0;
     if (statePWR)
     {
-        M5_LOGI("BtnPWR:%s  count:%d", names[statePWR], M5.BtnPWR.getClickCount());
+        // M5_LOGI("BtnPWR:%s  count:%d", names[statePWR], M5.BtnPWR.getClickCount());
         M5.Display.fillRect(w * 0, 0, w - 1, h, colors[statePWR]);
     }
 
@@ -53,7 +52,7 @@ void loop()
                                                        : 0;
     if (stateA)
     {
-        M5_LOGI("BtnA:%s  count:%d", names[stateA], M5.BtnA.getClickCount());
+        // M5_LOGI("BtnA:%s  count:%d", names[stateA], M5.BtnA.getClickCount());
         M5.Display.fillRect(w * 1, 0, w - 1, h, colors[stateA]);
     }
 
@@ -65,7 +64,7 @@ void loop()
                                                        : 0;
     if (stateB)
     {
-        M5_LOGI("BtnB:%s  count:%d", names[stateB], M5.BtnB.getClickCount());
+        // M5_LOGI("BtnB:%s  count:%d", names[stateB], M5.BtnB.getClickCount());
         M5.Display.fillRect(w * 2, 0, w - 1, h, colors[stateB]);
     }
 
@@ -77,7 +76,7 @@ void loop()
                                                        : 0;
     if (stateC)
     {
-        M5_LOGI("BtnC:%s  count:%d", names[stateC], M5.BtnC.getClickCount());
+        // M5_LOGI("BtnC:%s  count:%d", names[stateC], M5.BtnC.getClickCount());
         M5.Display.fillRect(w * 3, 0, w - 1, h, colors[stateC]);
     }
 
@@ -89,7 +88,7 @@ void loop()
                                                            : 0;
     if (stateEXT)
     {
-        M5_LOGI("BtnEXT:%s  count:%d", names[stateEXT], M5.BtnEXT.getClickCount());
+        // M5_LOGI("BtnEXT:%s  count:%d", names[stateEXT], M5.BtnEXT.getClickCount());
         M5.Display.fillRect(w * 4, 0, w - 1, h, colors[stateEXT]);
     }
 

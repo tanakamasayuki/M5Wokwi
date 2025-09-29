@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "author": "wokwi",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp32",
+      "top": 50,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-ili9341",
+      "id": "lcd1",
+      "top": -10,
+      "left": 250,
+      "attrs": {
+        "width": "320",
+        "height": "240"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp32:18",
+      "lcd1:SCL",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp32:23",
+      "lcd1:SDA",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp32:19",
+      "lcd1:MISO",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp32:5",
+      "lcd1:CS",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp32:2",
+      "lcd1:DC",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp32:16",
+      "lcd1:RES",
+      "green",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp32:3V3",
+      "lcd1:VCC",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp32:GND",
+      "lcd1:GND",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp32:21",
+      "lcd1:LED",
+      "orange",
+      [
+        "h0"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}
