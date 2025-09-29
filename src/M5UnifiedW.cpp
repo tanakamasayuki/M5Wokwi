@@ -1,3 +1,3 @@
 #include "M5UnifiedW.h"
 
-M5WokwiClass M5;
+m5wokwi::M5WokwiClass M5;
