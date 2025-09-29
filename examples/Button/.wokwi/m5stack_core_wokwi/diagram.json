@@ -3,97 +3,75 @@
   "author": "wokwi",
   "editor": "wokwi",
   "parts": [
-    {
-      "type": "wokwi-esp32-devkit-v1",
-      "id": "esp32",
-      "top": 50,
-      "left": 0,
-      "attrs": {}
-    },
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -51.59, "left": -246.87, "attrs": {} },
     {
       "type": "wokwi-ili9341",
       "id": "lcd1",
-      "top": -10,
-      "left": 250,
-      "attrs": {
-        "width": "320",
-        "height": "240"
-      }
+      "top": -110.3,
+      "left": 1.2,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 169.4,
+      "left": -28.8,
+      "attrs": { "color": "grey", "xray": "1", "key": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 169.4,
+      "left": 67.2,
+      "attrs": { "color": "grey", "xray": "1", "key": "2" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": 169.4,
+      "left": 163.2,
+      "attrs": { "color": "grey", "xray": "1", "key": "3" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text1",
+      "top": 144,
+      "left": -19.2,
+      "attrs": { "text": "BtnA(1)" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text2",
+      "top": 144,
+      "left": 76.8,
+      "attrs": { "text": "BtnB(2)" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text3",
+      "top": 144,
+      "left": 172.8,
+      "attrs": { "text": "BtnC(3)" }
     }
   ],
   "connections": [
-    [
-      "esp32:18",
-      "lcd1:SCL",
-      "green",
-      [
-        "h0"
-      ]
-    ],
-    [
-      "esp32:23",
-      "lcd1:SDA",
-      "green",
-      [
-        "h0"
-      ]
-    ],
-    [
-      "esp32:19",
-      "lcd1:MISO",
-      "green",
-      [
-        "h0"
-      ]
-    ],
-    [
-      "esp32:5",
-      "lcd1:CS",
-      "green",
-      [
-        "h0"
-      ]
-    ],
-    [
-      "esp32:2",
-      "lcd1:DC",
-      "green",
-      [
-        "h0"
-      ]
-    ],
-    [
-      "esp32:16",
-      "lcd1:RES",
-      "green",
-      [
-        "h0"
-      ]
-    ],
-    [
-      "esp32:3V3",
-      "lcd1:VCC",
-      "red",
-      [
-        "h0"
-      ]
-    ],
-    [
-      "esp32:GND",
-      "lcd1:GND",
-      "black",
-      [
-        "h0"
-      ]
-    ],
-    [
-      "esp32:21",
-      "lcd1:LED",
-      "orange",
-      [
-        "h0"
-      ]
-    ]
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "lcd1:VCC", "esp:VIN", "red", [] ],
+    [ "esp:GND.1", "lcd1:GND", "black", [] ],
+    [ "lcd1:CS", "esp:D15", "green", [] ],
+    [ "lcd1:RST", "esp:D4", "green", [] ],
+    [ "lcd1:D/C", "esp:D2", "green", [] ],
+    [ "lcd1:MOSI", "esp:D23", "green", [] ],
+    [ "lcd1:SCK", "esp:D18", "green", [] ],
+    [ "lcd1:MISO", "esp:D19", "green", [] ],
+    [ "esp:GND.1", "btn1:1.l", "black", [ "v36.99", "h97.57" ] ],
+    [ "esp:GND.1", "btn2:1.l", "black", [ "v36.99", "h212.77" ] ],
+    [ "esp:GND.1", "btn3:1.l", "black", [ "v36.99", "h308.77" ] ],
+    [ "esp:D12", "btn1:2.l", "green", [ "v122.79", "h193.87" ] ],
+    [ "esp:D13", "btn2:2.l", "green", [ "v132.89", "h309.07" ] ],
+    [ "esp:D14", "btn3:2.l", "green", [ "v152.39", "h405.07" ] ]
   ],
   "dependencies": {}
 }

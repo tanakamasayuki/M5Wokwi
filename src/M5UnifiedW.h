@@ -5,6 +5,7 @@
 
 #include <Arduino.h>
 #include <LovyanGFX.hpp>
+#include "utility/Button_Class.hpp"
 
 namespace m5wokwi
 {
@@ -62,16 +63,62 @@ namespace m5wokwi
 
     class M5WokwiClass
     {
-    private:
     public:
         m5wokwi::LGFX Display;
+        m5::Button_Class &BtnA = _buttons[0];
+        m5::Button_Class &BtnB = _buttons[1];
+        m5::Button_Class &BtnC = _buttons[2];
+        m5::Button_Class &BtnEXT = _buttons[3]; // CoreInk top button
+        m5::Button_Class &BtnPWR = _buttons[4]; // CoreInk power button / AXP192 power button
+        m5::Button_Class &getButton(size_t index) { return _buttons[index]; }
+        m5::Button_Class &Buttons(size_t index) { return getButton(index); }
+
         void begin()
         {
             Serial.begin(115200);
             Display.init();
+            pinMode(GPIO_NUM_12, INPUT_PULLUP); // BtnA
+            pinMode(GPIO_NUM_13, INPUT_PULLUP); // BtnB
+            pinMode(GPIO_NUM_14, INPUT_PULLUP); // BtnC
         };
+
+        void update(void)
+        {
+            auto ms = lgfx::millis();
+            _updateMsec = ms;
+            uint_fast8_t use_rawstate_bits = 0;
+            uint_fast8_t btn_rawstate_bits = 0;
+
+            use_rawstate_bits = 0b00111;
+            btn_rawstate_bits = (digitalRead(GPIO_NUM_12) << 0)    // gpio12 A
+                                | (digitalRead(GPIO_NUM_13) << 1)  // gpio13 B
+                                | (digitalRead(GPIO_NUM_14) << 2); // gpio14 C
+
+            for (int i = 0; i < 5; ++i)
+            {
+                if (use_rawstate_bits & (1 << i))
+                {
+                    _buttons[i].setRawState(ms, btn_rawstate_bits & (1 << i));
+                }
+            }
+        };
+
+        void delay(uint32_t ms)
+        {
+            ::delay(ms);
+        };
+
+    private:
+        m5::Button_Class _buttons[5];
+        std::uint32_t _updateMsec = 0;
     };
 
 } // namespace m5wokwi
 
 extern m5wokwi::M5WokwiClass M5;
+
+#define M5_LOGE(format, ...) Serial.printf("ERROR:" format "\r\n", ##__VA_ARGS__)
+#define M5_LOGW(format, ...) Serial.printf("WARN:" format "\r\n", ##__VA_ARGS__)
+#define M5_LOGI(format, ...) Serial.printf("INFO:" format "\r\n", ##__VA_ARGS__)
+#define M5_LOGD(format, ...) Serial.printf("DEBUG:" format "\r\n", ##__VA_ARGS__)
+#define M5_LOGV(format, ...) Serial.printf("VERBOSE:" format "\r\n", ##__VA_ARGS__)
